@@ -21,8 +21,7 @@ class Routers extends Component {
             <Router>
                 <div>
                     <Route exact path="/" component={Login} />
-                    <Route path="/" component={layout} />
-                    <Route path="/news" component={News} />
+                    <Route path="/:params" component={layout} />
                 </div>
             </Router>
         )

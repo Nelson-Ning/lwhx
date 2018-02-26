@@ -29,3 +29,20 @@
         }
     }
 }
+
+.layout-content{
+    margin: 5px;
+    background: #fff;
+    min-height: 500px;
+}
+
+.data-table{
+    margin: 5px;
+    th, td{
+        text-align: center !important;
+    }
+    .data-table-title-button{
+        float: right;
+        margin-right: 5px;
+    }
+}

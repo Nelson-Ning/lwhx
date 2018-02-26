@@ -15,7 +15,8 @@ import {
     Checkbox,
     Tooltip,
     Divider,
-    Popover
+    Popover,
+    notification
 } from 'antd';
 import {
     LoginActions
@@ -24,6 +25,10 @@ import {
     CommonActions
 } from '../../redux/action/index.js';
 import './login.scss';
+import {
+    isIE,
+    IEVersion
+} from '../../utils/index.js';
 const FormItem = Form.Item;
 
 //import { homeActions } from './actions';
@@ -60,6 +65,12 @@ class Login extends React.Component {
         const {
             getFieldDecorator
         } = this.props.form;
+        const args = {
+            message: '浏览器兼容性警告',
+            description: '您正在使用的浏览器版本过低，将不能正常浏览和使用本系统',
+            duration: 0,
+        };
+        isIE() ? notification.warning(args) : '';
         const forgot_content = (
             <div>
                 忘记密码请联系：撒旦撒旦

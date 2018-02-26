@@ -3,7 +3,10 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-    entry: path.resolve(__dirname, './development/main.js'),
+    //entry: path.resolve(__dirname, './development/main.js'),
+    entry: {
+        app: ['babel-polyfill', './development/main.js'],
+    },
     output: {
         path: path.resolve(__dirname, './build'),
         publicPath: '',

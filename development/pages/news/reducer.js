@@ -2,14 +2,18 @@ import {
     fromJS
 } from 'immutable';
 const initialState = {
-    "loginInfo": {},
+    "params": {
+        "title": '',
+        "content": '',
+        "channel": [],
+    }
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'LOGIN_GOLOGIN':
+        case 'NEWS_CHANHE_PARAMS':
             return fromJS(state).merge({
-                loginInfo: action.loginInfo
+                params: action.params
             }).toJS();
         default:
             return state;

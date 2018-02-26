@@ -6,7 +6,7 @@ import {
     Icon,
     Menu,
 } from 'antd';
-import './style/header.scss';
+import './style/common.scss';
 import {
     CommonActions
 } from '../../redux/action/index.js';
@@ -131,13 +131,6 @@ class Aside extends Component {
                                 <span>首页</span>
                             </Menu.Item>
                             <SubMenu
-                                key="sub2"
-                                title={<span><Icon type="mail" /><span>消息发布与管理</span></span>}
-                            >
-                            <Menu.Item key="2">发布</Menu.Item>
-                            <Menu.Item key="3">管理</Menu.Item>
-                            </SubMenu>
-                            <SubMenu
                                 key="sub3"
                                 title={<span><Icon type="team" /><span>学生权限管理</span></span>}
                             >
@@ -179,12 +172,6 @@ class Aside extends Component {
                                 <Icon type="desktop" />
                                 <span>首页</span>
                             </Menu.Item>
-                            <SubMenu
-                                key="sub2"
-                                title={<span><Icon type="mail" /><span>消息查看</span></span>}
-                            >
-                            <Menu.Item key="2">查看</Menu.Item>
-                            </SubMenu>
                             <SubMenu
                                 key="sub3"
                                 title={<span><Icon type="team" /><span>选题中心</span></span>}

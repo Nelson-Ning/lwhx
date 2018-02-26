@@ -7,7 +7,6 @@ import React, {
 import {
   Layout,
   Menu,
-  Breadcrumb,
   Icon
 } from 'antd';
 const {
@@ -16,6 +15,13 @@ const {
   Footer,
   Sider
 } = Layout;
+import {
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom';
+import news from '../../pages/news/index.js';
+import './style/common.scss';
 const SubMenu = Menu.SubMenu;
 export default class Main extends React.Component {
   constructor(props) {
@@ -31,7 +37,6 @@ export default class Main extends React.Component {
     });
   }
   render() {
-    console.log(this.props);
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Aside />
@@ -39,14 +44,11 @@ export default class Main extends React.Component {
           <Header style={{ background: '#fff', padding: 0 }}>
             <Top />
           </Header>
-          <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
-            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-              Bill is a cat.
-              {this.props.children}
+          <Content>
+            <div className="layout-content" >
+              <Switch>
+                <Route exact path="/news" component={news}/>
+              </Switch>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
