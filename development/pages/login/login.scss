@@ -1,0 +1,52 @@
+.login-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    //background: url(https://welogix-web-cdn.b0.upaiyun.com/assets/img/login-splash-bg-port.jpg) no-repeat center center;
+    background-size: cover;
+    .login-content{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -200px 0 0 -200px;
+        width: 400px;
+        padding: 36px;
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);
+        background-color: #fff;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .login-form-button {
+        margin-top: 10px;
+        width: 100%;
+    }
+    .login-form-forgot {
+        float: right;
+        padding: 0px 5px;
+    }
+    .login-logo {
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+        margin-bottom: 24px;
+        img{
+            width: 40px;
+            margin-right: 8px;
+        }
+    }
+    .login-account {
+        .login-account-list {
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            text-align: center;
+        }
+        img{
+            margin-right: 5px;
+        }
+        &:hover{
+            color: blue;
+        };
+    }
+}

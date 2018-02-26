@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env NODE_ENV=production webpack --optimize-minimize",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.config.js --progress --colors",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.config.js --progress --colors --history-api-fallback",
     "clean": "rd /s/q build && mkdir build"
   },
   "author": "wangyongning",
@@ -23,6 +23,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
+    "immutable": "^3.8.2",
     "jquery": "^3.2.1",
     "node-sass": "^4.7.2",
     "postcss-loader": "^2.0.10",
@@ -42,9 +43,6 @@
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "http-push-webpack-plugin": "^1.0.2",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "underscore": "^1.3.0",
     "webpack": "^3.8.1",

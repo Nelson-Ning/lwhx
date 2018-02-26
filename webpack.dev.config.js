@@ -1,7 +1,3 @@
-/**
- * @file actions
- **/
-/* eslint-disable */
 var path = require('path');
 var webpack = require('webpack');
 const config = require('./webpack.base.config');
@@ -15,9 +11,8 @@ var proxy = require('http-proxy-middleware');
 //     noInfo: true,
 //     port: 8888,
 //     proxy: [{
-//         context: [`/bjhstats/*`],
-//         target: 'http://baijiahao.baidu-int.com/',
-//         //target: 'http://huangwenbin.bjh.otp.baidu.com',
+//         context: [`/ggg/*`],
+//         target: '',
 //         changeOrigin: true,
 //         secure: false
 //     }]
