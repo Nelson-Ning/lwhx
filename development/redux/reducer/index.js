@@ -10,7 +10,28 @@ const initialState = {
     userInfo: {
         "name": "2999",
         "level": "A",
-        "token": "sadsadsadasxxx"
+        "token": "sadsadsadasxxx",
+        "message": [
+            {
+                "publisher": "admin",
+                "title": "阿萨德撒的",
+                "content": "自行车自行车自行车自行车自行车自行车自行车自行车自行车自行车自行车自行车自行车自行车",
+                "isRead": true,
+                "canReply": false
+            }, {
+                "publisher": "admin",
+                "title": "",
+                "content": "展现出现在",
+                "isRead": true,
+                "canReply": false
+            }, {
+                "publisher": "admin",
+                "title": "撒旦撒",
+                "content": "在在在",
+                "isRead": false,
+                "canReply": false
+            }
+        ]
     }
 };
 

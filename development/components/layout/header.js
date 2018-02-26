@@ -6,7 +6,9 @@ import {
     Icon,
     Menu,
     Badge,
-    Popover
+    Popover,
+    List,
+    Divider
 } from 'antd';
 import './style/common.scss';
 import {
@@ -39,12 +41,24 @@ class Top extends Component {
     render() {
         const {
             name,
-            level
+            level,
+            message
         } = this.props.common.userInfo;
+        const count = message.filter((value) => (value.isRead === false)).length;
         const content = (
           <div>
-            <p>Content</p>
-            <p>Content</p>
+              <List
+                itemLayout="horizontal"
+                dataSource={message}
+                renderItem={item => (
+                  <List.Item>
+                    <List.Item.Meta
+                      title={<div style={{ 'color': item.isRead == true ? '' : 'red'}}>{"来自" + item.publisher + "的" + (item.isRead == true ? "" : "未读") + "消息："}<div style={{ 'float': 'right' }}><a href="javascript:void(0)" style={{ 'color': '#999'}}>标记已读</a><Divider type="vertical" /><a href="javascript:void(0)" style={{ 'color': '#999'}}>删除</a></div></div>}
+                      description={<a href="https://ant.design">{item.title === ""  ? item.content : "《" + item.title + "》："  + item.content}</a>}
+                    />
+                  </List.Item>
+                )}
+              />
           </div>
         );
         return (
@@ -57,7 +71,7 @@ class Top extends Component {
                     <span className="layout-header-menu-title" style={{ 'color': 'red'}}>{CONST.USER_LEVEL.filter((value) => (value[0] == level)).length != 0 ? CONST.USER_LEVEL.filter((value) => (value[0] == level))[0][1] : '未查询到对应权限 请联系系统管理员'}</span>
                     <Popover content={content} title="消息盒子" trigger="hover" placement="bottomRight">
                         <span className="layout-header-menu-mail">
-                            <Badge count={1} overflowCount={99}>
+                            <Badge count={count} overflowCount={99}>
                                 <Icon type="mail" style={{ 'fontSize': '18px'}}/>
                             </Badge>
                         </span>

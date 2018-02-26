@@ -157,7 +157,8 @@ class News extends React.Component {
                 <Table 
                     className="data-table"
                     columns={this.columns} 
-                    dataSource={this.data} 
+                    dataSource={this.data}
+                    rowKey="id" 
                     title={() => 
                         <div>
                             <span>sad</span>
