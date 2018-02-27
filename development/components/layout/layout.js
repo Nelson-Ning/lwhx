@@ -20,6 +20,7 @@ import {
   Link,
   Switch
 } from 'react-router-dom';
+import home from '../../pages/home/index.js';
 import news from '../../pages/news/index.js';
 import './style/common.scss';
 const SubMenu = Menu.SubMenu;
@@ -47,6 +48,7 @@ export default class Main extends React.Component {
           <Content>
             <div className="layout-content" >
               <Switch>
+                <Route exact path="/home" component={home}/>
                 <Route exact path="/news" component={news}/>
               </Switch>
             </div>

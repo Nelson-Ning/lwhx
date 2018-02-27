@@ -1,0 +1,16 @@
+.details-content-home-items{
+    width: 100%;
+    span{
+        padding-right:10px;
+    }
+    .details-content-home-items-title{
+        float: left;
+        max-width: 500px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .details-content-home-items-right{
+        float: right;
+    }
+}

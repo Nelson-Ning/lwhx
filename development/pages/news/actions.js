@@ -5,4 +5,10 @@ export const NewsActions = {
             params: params
         }
     },
+    changeMessage: (data) => {
+        return {
+            type: 'NEWS_CHANHE_MESSAGE',
+            message: data
+        }
+    }
 };

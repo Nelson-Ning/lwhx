@@ -39,8 +39,10 @@ class News extends React.Component {
         this.titleonChange = this.titleonChange.bind(this);
         this.contentonChange = this.contentonChange.bind(this);
         this.checkBoxOnchange = this.checkBoxOnchange.bind(this);
+        this.Reedit = this.Reedit.bind(this);
         this.state = {
             visible: false,
+            reeditid: ''
         };
         this.columns = [{
             title: '消息标题',
@@ -56,11 +58,6 @@ class News extends React.Component {
             key: 'status',
             render: (text, record) => (CONST.MESSAGE_STATUS.filter((value) => (value[0] === text))[0][1])
         }, {
-            title: '消息类型',
-            dataIndex: 'type',
-            key: 'type',
-            render: (text, record) => (CONST.MESSAGE_CODE.filter((value) => (value[0] === text))[0][1])
-        }, {
             title: '发布渠道',
             dataIndex: 'channel',
             key: 'channel',
@@ -73,63 +70,59 @@ class News extends React.Component {
             title: '操作',
             key: 'operation',
             render: (text, record) => {
-                return (
-                    <span>
-                      <a href="#">撤回</a>
-                      <Divider type="vertical" />
-                      {record.istop == true ? <a href="#">取消置顶</a> : <a href="#">置顶</a>}
-                    </span>
-                    )
-            },
-        }];
+                if(record.status === "0"){
+                    return (
+                        <span>
+                            <a href="javascript: void(0)" onClick={this.Reedit} id={record.id}>重新编辑</a>
+                        </span>
+                        )
+                } else {
+                    return (                 
+                        <span>
+                            <a href="avascript: void(0)">撤回</a>
+                            <Divider type="vertical" />
+                            {record.istop == true ? <a href="#">取消置顶</a> : <a href="#">置顶</a>}
+                        </span>
+                        )
 
-        this.data = [{
-            id: '1',
-            title: 'John Brown',
-            content: 32,
-            status: "0",
-            channel: ["1","2"],
-            publisher: 'zhangsan',
-            istop: true,
-            type: "0"
-        },{
-            id: '2',
-            title: 'John Brown',
-            content: 32,
-            status: "1",
-            channel: ["1","2"],
-            publisher: 'zhangsan',
-            istop: false,
-            type: "4"
-        },{
-            id: '3',
-            title: 'John Brown',
-            content: 32,
-            status: "0",
-            channel: ["1","2"],
-            publisher: 'zhangsan',
-            istop: true,
-            type: "1"
+                }
+            },
         }];
     }
 
+    Reedit(e){
+        this.setState({
+            visible: true,
+            reeditid: e.target.id
+        });
+        const params = this.props.news.message.filter((val) => (val.id === e.target.id));
+        this.props.NewsActions.changeParams(fromJS(this.props.news.params).merge(params[0]));  
+    }  
+
     pushonClick() {
         this.setState({
-            visible: true
+            visible: true,
+            reeditid: ''
         })
     }
 
     pushonOk() {
-        if(this.state.channel == []) {
+        if(this.props.news.params.channel.length === 0) {
              message.error('请输入消息接受者');
              return;
-        } else if(this.state.title == '') {
+        } else if(this.props.news.params.title == '') {
              message.error('请输入标题');
              return;
-        } else if(this.state.content == '') {
+        } else if(this.props.news.params.content == '') {
              message.error('请输入内容');
              return;
         }
+        const params = this.props.news.params;
+        params.id = this.state.reeditid === '' ? '' : this.state.reeditid;
+        params.status = "1";
+        params.publisher = this.props.common.userInfo.name;
+        params.istop = false;
+        this.props.NewsActions.changeParams(fromJS(this.props.news.params).merge(params));
     }
 
     pushonCancel() {
@@ -152,12 +145,13 @@ class News extends React.Component {
 
     render() {
         const level = this.props.common.userInfo.level;
+        const message = this.props.news.message;
         return (
             <div className="details-content">
                 <Table 
                     className="data-table"
                     columns={this.columns} 
-                    dataSource={this.data}
+                    dataSource={message}
                     rowKey="id" 
                     title={() => 
                         <div>
