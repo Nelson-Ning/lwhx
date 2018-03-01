@@ -57,12 +57,12 @@ class Aside extends Component {
                                     <span>消息发布与管理</span>
                                 </Link>
                             </Menu.Item>
-                            <SubMenu
-                                key="sub3"
-                                title={<span><Icon type="team" /><span>学院管理员权限</span></span>}
-                            >
-                            <Menu.Item key="5">查看清单</Menu.Item>
-                            </SubMenu>
+                            <Menu.Item key="3">
+                                <Link to="/memberList">
+                                    <Icon type="team" />
+                                    <span>人员查看与添加</span>
+                                </Link>
+                            </Menu.Item>
                             <Menu.Item key="6">
                                 <Link to="/">
                                     <Icon type="logout" />

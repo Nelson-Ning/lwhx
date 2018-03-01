@@ -22,6 +22,7 @@ import {
 } from 'react-router-dom';
 import home from '../../pages/home/index.js';
 import news from '../../pages/news/index.js';
+import MemberList from '../../pages/memberlist/index.js'; 
 import './style/common.scss';
 const SubMenu = Menu.SubMenu;
 export default class Main extends React.Component {
@@ -50,6 +51,7 @@ export default class Main extends React.Component {
               <Switch>
                 <Route exact path="/home" component={home}/>
                 <Route exact path="/news" component={news}/>
+                <Route exact path="/memberList" component={MemberList}/>
               </Switch>
             </div>
           </Content>
