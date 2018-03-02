@@ -15,21 +15,43 @@ const initialState = {
             {
                 "publisher": "admin",
                 "title": "阿萨德撒的",
-                "content": "自行车自行车自行车自行车自行车自行车自行车自行车自行车自行车自行车自行车自行车自行车",
+                "content": "",
+                "time": 1519963684968,
                 "isRead": true,
-                "canReply": false
+                "message_type": "0",
+                "id": "1"
             }, {
                 "publisher": "admin",
-                "title": "",
+                "title": "似懂非懂双方的首发",
                 "content": "展现出现在",
+                "time": 1519963684968,
                 "isRead": true,
-                "canReply": false
+                "message_type": "1",
+                "id": "2"
             }, {
                 "publisher": "admin",
                 "title": "撒旦撒",
                 "content": "在在在",
+                "time": 1519963684968,
                 "isRead": false,
-                "canReply": false
+                "message_type": "2",
+                "id": "3"
+            }, {
+                "publisher": "admin",
+                "title": "撒旦撒",
+                "content": "",
+                "time": 1519963684968,
+                "isRead": false,
+                "message_type": "0",
+                "id": "4"
+            }, {
+                "publisher": "admin",
+                "title": "撒旦撒",
+                "content": "在在在",
+                "time": 1519963684968,
+                "isRead": false,
+                "message_type": "1",
+                "id": "5"
             }
         ]
     }
