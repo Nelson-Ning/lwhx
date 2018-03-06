@@ -27,12 +27,14 @@ import {
 import './login.scss';
 import {
     isIE,
-    IEVersion
+    IEVersion,
+    AJAX,
+    setCookie,
+    getCookie
 } from '../../utils/index.js';
 const FormItem = Form.Item;
-
 //import { homeActions } from './actions';
-
+const Ajax = new AJAX();
 class Login extends React.Component {
 
     constructor(props) {
@@ -42,6 +44,7 @@ class Login extends React.Component {
             loginBtnText: '登录'
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.doLogin = this.doLogin.bind(this);
     }
 
     handleSubmit(e) {
@@ -54,11 +57,59 @@ class Login extends React.Component {
         } = this.props.CommonActions;
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                doLogin(values);
+                this.doLogin(values);
                 changeLoading(true);
-                this.props.history.push('/home');
+                //this.props.history.push('/home');
             }
         });
+    }
+
+    componentWillMount() {
+        if (getCookie('token')) {
+            Ajax.get({
+                url: 'api/user/judgeToken',
+            }).then(result => {
+                if (0 === +result.errno) {
+                    console.log(result);
+                }
+            })
+        }
+    }
+
+    doLogin(value) {
+        const {
+            changeLoading
+        } = this.props.CommonActions;
+        Ajax.post({
+            url: 'api/user/doLogin',
+            data: {
+                "username": value.username,
+                "password": value.password
+            },
+        }).then(result => {
+            if (0 === +result.errno) {
+                changeLoading(false);
+                const code = result.ret.userInfo.code
+                if (code === 403) {
+                    message.error(result.ret.userInfo.tip)
+                } else if (code === 200) {
+                    const {
+                        username,
+                        token,
+                        level,
+                        exp
+                    } = result.ret.userInfo;
+                    //setCookie('token', token, 1);
+                    message.error('成')
+                } else {
+                    message.error('服务器请求失败');
+                }
+            } else {
+                console.log(result.errmsg)
+            }
+        }, e => {
+            message.error('服务器请求失败');
+        })
     }
 
     render() {
@@ -91,7 +142,7 @@ class Login extends React.Component {
                         </div>
                         <Form onSubmit={this.handleSubmit} className="login-form">
                             <FormItem>
-                                {getFieldDecorator('userName', {
+                                {getFieldDecorator('username', {
                                     rules: [{ required: true, message: '请输入用户名' }],
                                 })(
                                     <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
