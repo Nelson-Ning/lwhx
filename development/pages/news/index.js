@@ -7,7 +7,7 @@ import {
     Modal,
     Checkbox,
     Input,
-    Row, 
+    Row,
     Col,
     message
 } from 'antd';
@@ -28,7 +28,9 @@ import {
     fromJS
 } from 'immutable';
 import CONST from '../../utils/const';
-const { TextArea } = Input;
+const {
+    TextArea
+} = Input;
 class News extends React.Component {
 
     constructor(props) {
@@ -61,7 +63,7 @@ class News extends React.Component {
             title: '发布渠道',
             dataIndex: 'channel',
             key: 'channel',
-            render: (text, record) => ( record.channel.map((items) => (CONST.MESSAGE_CODE.filter((value) => (value[0] === items))[0][1])).join('；') )
+            render: (text, record) => (record.channel.map((items) => (CONST.MESSAGE_CODE.filter((value) => (value[0] === items))[0][1])).join('；'))
         }, {
             title: '发布人',
             dataIndex: 'publisher',
@@ -70,34 +72,34 @@ class News extends React.Component {
             title: '操作',
             key: 'operation',
             render: (text, record) => {
-                if(record.status === "0"){
+                if (record.status === "0") {
                     return (
                         <span>
                             <a href="javascript: void(0)" onClick={this.Reedit} id={record.id}>重新编辑</a>
                         </span>
-                        )
+                    )
                 } else {
-                    return (                 
+                    return (
                         <span>
                             <a href="avascript: void(0)">撤回</a>
                             <Divider type="vertical" />
                             {record.istop == true ? <a href="#">取消置顶</a> : <a href="#">置顶</a>}
                         </span>
-                        )
+                    )
 
                 }
             },
         }];
     }
 
-    Reedit(e){
+    Reedit(e) {
         this.setState({
             visible: true,
             reeditid: e.target.id
         });
         const params = this.props.news.message.filter((val) => (val.id === e.target.id));
-        this.props.NewsActions.changeParams(fromJS(this.props.news.params).merge(params[0]));  
-    }  
+        this.props.NewsActions.changeParams(fromJS(this.props.news.params).merge(params[0]));
+    }
 
     pushonClick() {
         this.setState({
@@ -107,15 +109,15 @@ class News extends React.Component {
     }
 
     pushonOk() {
-        if(this.props.news.params.channel.length === 0) {
-             message.error('请输入消息接受者');
-             return;
-        } else if(this.props.news.params.title == '') {
-             message.error('请输入标题');
-             return;
-        } else if(this.props.news.params.content == '') {
-             message.error('请输入内容');
-             return;
+        if (this.props.news.params.channel.length === 0) {
+            message.error('请输入消息接受者');
+            return;
+        } else if (this.props.news.params.title == '') {
+            message.error('请输入标题');
+            return;
+        } else if (this.props.news.params.content == '') {
+            message.error('请输入内容');
+            return;
         }
         const params = this.props.news.params;
         params.id = this.state.reeditid === '' ? '' : this.state.reeditid;
@@ -132,15 +134,21 @@ class News extends React.Component {
     }
 
     titleonChange(e) {
-        this.props.NewsActions.changeParams(fromJS(this.props.news.params).merge({title: e.target.value}));
+        this.props.NewsActions.changeParams(fromJS(this.props.news.params).merge({
+            title: e.target.value
+        }));
     }
 
     contentonChange(e) {
-        this.props.NewsActions.changeParams(fromJS(this.props.news.params).merge({content: e.target.value}));
+        this.props.NewsActions.changeParams(fromJS(this.props.news.params).merge({
+            content: e.target.value
+        }));
     }
 
     checkBoxOnchange(checkedValues) {
-        this.props.NewsActions.changeParams(fromJS(this.props.news.params).merge({channel: checkedValues.sort()}));
+        this.props.NewsActions.changeParams(fromJS(this.props.news.params).merge({
+            channel: checkedValues.sort()
+        }));
     }
 
     render() {
@@ -158,19 +166,34 @@ class News extends React.Component {
                             <span>sad</span>
                             <Button type="primary" className="data-table-title-button" onClick={this.pushonClick}>发布信息</Button>
                         </div>
-                    }
-                /> 
-                <Modal
-                    title = "发布消息"
-                    visible = {this.state.visible}
-                    onOk = {this.pushonOk}
-                    onCancel = {this.pushonCancel}
-                    okText="发送消息"
-                    cancelText="取消"
-                >
-                <p className="news-modal-title">发送到：</p>
-                <Checkbox.Group style={{ width: '100%' }} onChange={this.checkBoxOnchange} value={this.props.news.params.channel}>
-                    <Row type="flex" justify="start">
+        }
+        />  <
+        Modal
+        title = "发布消息"
+        visible = {
+            this.state.visible
+        }
+        onOk = {
+            this.pushonOk
+        }
+        onCancel = {
+            this.pushonCancel
+        }
+        okText = "发送消息"
+        cancelText = "取消" >
+            <p className="news-modal-title">发送到：</p> <
+            Checkbox.Group style = {
+                {
+                    width: '100%'
+                }
+            }
+        onChange = {
+            this.checkBoxOnchange
+        }
+        value = {
+                this.props.news.params.channel
+            } >
+            <Row type="flex" justify="start">
                         <Col span={8} style={{ 'display': level == 'A' ? 'block': 'none'}}>
                             <Checkbox value="0">登录页公告</Checkbox>
                         </Col>
@@ -189,14 +212,33 @@ class News extends React.Component {
                         <Col span={8} style={{ 'display': level == 'A' || level == 'B' ? 'block': 'none'}}>
                             <Checkbox value="5">全部学生</Checkbox>
                         </Col>
-                    </Row>
-                </Checkbox.Group>
-                <p className="news-modal-title">标题：</p>
-                <TextArea placeholder="请输入标题..." autosize onChange={this.titleonChange} value={this.props.news.params.title}/>
-                <p className="news-modal-title">内容：</p>
-                <TextArea placeholder="请输入内容..." autosize={{ minRows: 4}} onChange={this.contentonChange} value={this.props.news.params.content}/>
-                </Modal> 
-            </div>
+                    </Row> <
+            /Checkbox.Group> <
+        p className = "news-modal-title" > 标题： < /p> <
+        TextArea placeholder = "请输入标题..."
+        autosize onChange = {
+            this.titleonChange
+        }
+        value = {
+            this.props.news.params.title
+        }
+        /> <
+        p className = "news-modal-title" > 内容： < /p> <
+        TextArea placeholder = "请输入内容..."
+        autosize = {
+            {
+                minRows: 4
+            }
+        }
+        onChange = {
+            this.contentonChange
+        }
+        value = {
+            this.props.news.params.content
+        }
+        /> < /
+        Modal > <
+            /div>
     )
 }
 }
@@ -208,7 +250,7 @@ function mapStateToProps(state) {
     } = state;
     return {
         common: Common,
-        news:News
+        news: News
     }
 }
 

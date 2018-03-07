@@ -22,7 +22,11 @@ import {
 } from 'react-router-dom';
 import home from '../../pages/home/index.js';
 import news from '../../pages/news/index.js';
-import MemberList from '../../pages/memberlist/index.js'; 
+import MemberList from '../../pages/memberlist/index.js';
+import SelectionTime from '../../pages/selectionTime/index.js';
+import ShenPi from '../../pages/shenpi/index.js';
+import Progress from '../../pages/progress/index.js';
+import ReleaseSubject from '../../pages/releaseSubject/index.js';
 import './style/common.scss';
 const SubMenu = Menu.SubMenu;
 export default class Main extends React.Component {
@@ -52,6 +56,10 @@ export default class Main extends React.Component {
                 <Route exact path="/home" component={home}/>
                 <Route exact path="/news" component={news}/>
                 <Route exact path="/memberList" component={MemberList}/>
+                <Route exact path="/shenpi" component={ShenPi}/>
+                <Route exact path="/selectionTime" component={SelectionTime}/>
+                <Route exact path="/progress" component={Progress}/>
+                <Route exact path="/releasesubject" component={ReleaseSubject}/>
               </Switch>
             </div>
           </Content>

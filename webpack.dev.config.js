@@ -12,7 +12,7 @@ config.devServer = {
     port: 8888,
     proxy: [{
         context: [`/api/*/*`],
-        target: 'http://localhost:8088/',
+        target: 'http://localhost:8080/',
         changeOrigin: true,
         secure: false
     }]

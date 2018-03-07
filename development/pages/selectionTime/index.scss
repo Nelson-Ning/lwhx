@@ -1,0 +1,19 @@
+.details-content-selTime{
+    width: 320px;
+    height: 400px;
+    margin: 0 auto;
+    padding-top: 100px;
+    text-align: center;
+    .details-content-selTime-left{
+        float: left;
+    }
+    .details-content-selTime-right{
+        float: right;
+    }
+    .details-content-div{
+        overflow: hidden;
+    }
+    p{
+        margin-top: 20px;
+    }
+}

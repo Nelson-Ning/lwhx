@@ -135,7 +135,7 @@ class AJAX {
         return this.send(options, 'post');
     }
 
-    get(options) {
+    get(props) {
         return this.send(options, 'get');
     }
 }
@@ -171,6 +171,5 @@ export {
     getLocalTime,
     AJAX,
     setCookie,
-    getCookie,
-    removeCookie
+    getCookie
 };

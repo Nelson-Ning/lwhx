@@ -19,6 +19,9 @@ import {
     notification
 } from 'antd';
 import {
+    fromJS
+} from 'immutable';
+import {
     LoginActions
 } from './actions.js';
 import {
@@ -30,10 +33,10 @@ import {
     IEVersion,
     AJAX,
     setCookie,
-    getCookie
+    getCookie,
+    removeCookie
 } from '../../utils/index.js';
 const FormItem = Form.Item;
-//import { homeActions } from './actions';
 const Ajax = new AJAX();
 class Login extends React.Component {
 
@@ -66,13 +69,31 @@ class Login extends React.Component {
 
     componentWillMount() {
         if (getCookie('token')) {
-            Ajax.get({
-                url: 'api/user/judgeToken',
-            }).then(result => {
-                if (0 === +result.errno) {
-                    console.log(result);
-                }
-            })
+            let hash = location.hash.split('?')
+            if (hash[1] == 'from=logout') {
+                removeCookie('token');
+            } else {
+                Ajax.get({
+                    url: 'api/user/judgeToken',
+                }).then(result => {
+                    if (0 === +result.errno) {
+                        if (result.ret.userInfo.code === 200) {
+                            const {
+                                name,
+                                level,
+                                message
+                            } = result.ret.userInfo;
+                            const userInfo = fromJS(this.props.common.userInfo).merge({
+                                'name': name,
+                                'level': level,
+                                //'message': message
+                            })
+                            this.props.CommonActions.changeUserInfo(userInfo.toJS());
+                            this.props.history.push('/home');
+                        }
+                    }
+                })
+            }
         }
     }
 
@@ -94,13 +115,17 @@ class Login extends React.Component {
                     message.error(result.ret.userInfo.tip)
                 } else if (code === 200) {
                     const {
-                        username,
-                        token,
+                        name,
                         level,
-                        exp
+                        message
                     } = result.ret.userInfo;
-                    //setCookie('token', token, 1);
-                    message.error('成')
+                    const userInfo = fromJS(this.props.common.userInfo).merge({
+                        'name': name,
+                        'level': level,
+                        //'message': message
+                    })
+                    this.props.CommonActions.changeUserInfo(userInfo.toJS());
+                    this.props.history.push('/home');
                 } else {
                     message.error('服务器请求失败');
                 }
@@ -198,7 +223,8 @@ function mapStateToProps(state) {
     } = state;
     return {
         loading: Common.loading,
-        loginInfo: Login.loginInfo
+        loginInfo: Login.loginInfo,
+        common: Common
     }
 }
 
