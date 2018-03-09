@@ -6,8 +6,7 @@ import {
     Input,
     Button
 } from 'antd';
-import './index.scss';
-export default class ReleaseSubject extends React.Component {
+export default class PersonalData extends React.Component {
 
     constructor(props) {
         super(props);
@@ -26,37 +25,31 @@ export default class ReleaseSubject extends React.Component {
             <div className="details-content">
                 <div className="details-content-release">
                     <Row type="flex" justify="space-around" className="details-content-release-title">
-                        <Col span={10}>
-                            <div>
-                                <span>已审核&nbsp;/&nbsp;已提交</span>
-                            </div>
-                            <div>
-                                <span>0</span>
-                                <span>&nbsp;/&nbsp;</span>
-                                <span>3</span>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row type="flex" justify="space-around" className="details-content-release-title">
-                        <Col span={3}>论文题目</Col>
-                        <Col span={14}>
-                            <Input placeholder="必填"/>
-                        </Col>
-                    </Row>
-                    <Row type="flex" justify="space-around" className="details-content-release-title">
-                        <Col span={3}>论文描述</Col>
+                        <Col span={3}>姓名</Col>
                         <Col span={14}>
                             <Input />
                         </Col>
                     </Row>
                     <Row type="flex" justify="space-around" className="details-content-release-title">
-                        <Col span={3}>论文要求</Col>
+                        <Col span={3}>个人简介</Col>
+                        <Col span={14}>
+                            <Input />
+                        </Col>
+                    </Row>
+                    <Row type="flex" justify="space-around" className="details-content-release-title">
+                        <Col span={3}>职称</Col>
+                        <Col span={14}>
+                            <Input />
+                        </Col>
+                    </Row>
+                    <Row type="flex" justify="space-around" className="details-content-release-title">
+                        <Col span={3}>擅长方向</Col>
                         <Col span={14}>
                             <Input />
                         </Col>
                     </Row>
                     <p>
-                        <Button type="primary" onClick={null}>提交至学院管理员审批</Button>
+                        <Button type="primary" onClick={null}>保存</Button>
                     </p>
                 </div>
             </div>

@@ -135,7 +135,7 @@ class AJAX {
         return this.send(options, 'post');
     }
 
-    get(props) {
+    get(options) {
         return this.send(options, 'get');
     }
 }

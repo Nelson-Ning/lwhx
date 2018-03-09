@@ -1,0 +1,18 @@
+.details-content-main-title{
+    overflow: hidden;
+    float: right;
+    width: 480px;
+    .details-content-main-title-left{
+        float: left;
+        width: 400px;
+        input{
+            width: 210px;
+        }
+        .details-content-main-title-left-radio{
+            padding-left: 10px;
+        }
+    }
+    .details-content-main-title-right{
+        float: right;
+    }
+}

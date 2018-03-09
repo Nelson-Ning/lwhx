@@ -27,9 +27,11 @@ import SelectionTime from '../../pages/selectionTime/index.js';
 import ShenPi from '../../pages/shenpi/index.js';
 import Progress from '../../pages/progress/index.js';
 import ReleaseSubject from '../../pages/releaseSubject/index.js';
+import personalData from '../../pages/personalData/index.js';
+import Main from '../../pages/main/index.js';
 import './style/common.scss';
 const SubMenu = Menu.SubMenu;
-export default class Main extends React.Component {
+export default class Mylayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,6 +62,8 @@ export default class Main extends React.Component {
                 <Route exact path="/selectionTime" component={SelectionTime}/>
                 <Route exact path="/progress" component={Progress}/>
                 <Route exact path="/releasesubject" component={ReleaseSubject}/>
+                <Route exact path="/personalData" component={personalData}/>
+                <Route exact path="/main" component={Main}/>
               </Switch>
             </div>
           </Content>

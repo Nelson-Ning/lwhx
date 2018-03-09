@@ -12,13 +12,15 @@ import News from './pages/news/reducer.js';
 import MemberList from './pages/memberlist/reducer.js';
 import shenpi from './pages/shenpi/reducer.js';
 import Progress from './pages/progress/reducer.js';
+import Main from './pages/main/reducer.js';
 const rootReducer = combineReducers({
     Common,
     Login,
     News,
     MemberList,
     shenpi,
-    Progress
+    Progress,
+    Main
 })
 
 export default rootReducer;
