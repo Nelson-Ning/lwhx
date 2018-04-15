@@ -2,23 +2,23 @@ import Top from "./header.js";
 import Aside from "./aside.js";
 import Bottom from "./footer.js";
 import React, {
-  Component
+    Component
 } from 'react';
 import {
-  Layout,
-  Menu,
-  Icon
+    Layout,
+    Menu,
+    Icon
 } from 'antd';
 const {
-  Header,
-  Content,
-  Footer,
-  Sider
+    Header,
+    Content,
+    Footer,
+    Sider
 } = Layout;
 import {
-  Route,
-  Link,
-  Switch
+    Route,
+    Link,
+    Switch
 } from 'react-router-dom';
 import home from '../../pages/home/index.js';
 import news from '../../pages/news/index.js';
@@ -32,27 +32,29 @@ import Main from '../../pages/main/index.js';
 import './style/common.scss';
 const SubMenu = Menu.SubMenu;
 export default class Mylayout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      collapsed: false,
-    };
-    this.onCollapse = this.onCollapse.bind(this);
-  }
-  onCollapse(collapsed) {
-    this.setState({
-      collapsed
-    });
-  }
-  render() {
-    return (
-      <Layout style={{ minHeight: '100vh' }}>
-        <Aside />
+    constructor(props) {
+        super(props);
+        this.state = {
+            changeAside: false,
+        }
+        this.onCollapse = this.onCollapse.bind(this);
+    }
+
+    onCollapse(changeAside) {
+        this.setState({
+            changeAside: !changeAside
+        });
+    }
+
+    render() {
+        return (
+            <Layout>
+        <Aside onCollapse = {this.onCollapse}/>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}>
+          <Header style={{ background: '#fff', padding: 0, transition: 'all 0.3s', marginLeft: this.state.changeAside ? '80px' : '200px'  }}>
             <Top />
           </Header>
-          <Content>
+          <Content style={{ transition: 'all 0.3s', marginLeft: this.state.changeAside ? '80px' : '200px'}}>
             <div className="layout-content" >
               <Switch>
                 <Route exact path="/home" component={home}/>
@@ -72,6 +74,6 @@ export default class Mylayout extends React.Component {
           </Footer>
         </Layout>
       </Layout>
-    );
-  }
+        );
+    }
 }

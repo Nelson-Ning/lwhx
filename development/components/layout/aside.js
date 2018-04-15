@@ -1,31 +1,79 @@
-import React, { Component } from 'react';
-import { Layout, Icon, Menu, } from 'antd';
+import React, {
+    Component
+} from 'react';
+import {
+    Layout,
+    Icon,
+    Menu,
+} from 'antd';
 import './style/common.scss';
-import { CommonActions } from '../../redux/action/index.js';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Link, } from 'react-router-dom';
+import {
+    Link,
+} from 'react-router-dom';
 const SubMenu = Menu.SubMenu;
-const {Sider} = Layout;
-class Aside extends Component {
+const {
+    Sider
+} = Layout;
+export default class Aside extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            changeAside: false,
+            level: ''
+        }
         this.onCollapse = this.onCollapse.bind(this);
+        this.level = sessionStorage.getItem("level");
+        this.getlevel = this.getlevel.bind(this);
     }
 
     onCollapse(collapsed) {
-        const {changeAside} = this.props.CommonActions;
-        changeAside(collapsed);
+        const changeAside = this.state.changeAside;
+        this.setState({
+            changeAside: !changeAside
+        })
+        // 通知父元素
+        this.props.onCollapse(changeAside);
+    }
+
+    componentDidMount() {
+        let _this = this;
+        let level = sessionStorage.getItem("level");
+        _this.setState({
+            level: level
+        })
+        if (!level) {
+            window.onload = function() {　　
+                level = sessionStorage.getItem("level");
+                if (level) {　　
+                    _this.setState({
+                        level: level
+                    })
+                }
+            };
+
+        }
+    }
+
+    getlevel() {
+        let level = sessionStorage.getItem("level");
+        if (level) {　　
+            this.setState({
+                level: level
+            })
+        }
     }
 
     render() {
-        const level = this.props.Common.userInfo.level || '';
+        let {
+            level
+        } = this.state;
         let content;
         switch (level) {
-        case 'A': {
-            content = (
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+            case 'A':
+                {
+                    content = (
+                        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                             <Menu.Item key="1">
                                 <Link to="/home">
                                     <Icon type="desktop" />
@@ -51,12 +99,13 @@ class Aside extends Component {
                                 </Link>
                             </Menu.Item>
                         </Menu>
-            );
-            break;
-        }
-        case 'B': {
-            content = (
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                    );
+                    break;
+                }
+            case 'B':
+                {
+                    content = (
+                        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                             <Menu.Item key="1">
                                 <Link to="/home">
                                     <Icon type="desktop" />
@@ -100,12 +149,13 @@ class Aside extends Component {
                                 </Link>
                             </Menu.Item>
                         </Menu>
-            );
-            break;
-        }
-        case 'C': {
-            content = (
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                    );
+                    break;
+                }
+            case 'C':
+                {
+                    content = (
+                        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                             <Menu.Item key="1">
                                 <Link to="/home">
                                     <Icon type="desktop" />
@@ -149,12 +199,13 @@ class Aside extends Component {
                                 </Link>
                             </Menu.Item>
                         </Menu>
-            );
-            break;
-        }
-        case 'D': {
-            content = (
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                    );
+                    break;
+                }
+            case 'D':
+                {
+                    content = (
+                        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                             <Menu.Item key="1">
                                 <Link to="/home">
                                     <Icon type="desktop" />
@@ -192,17 +243,18 @@ class Aside extends Component {
                                 </Link>
                             </Menu.Item>
                         </Menu>
-            );
-            break;
-        }
-        default:
-            break;
+                    );
+                    break;
+                }
+            default:
+                break;
         }
         return (
             <Sider
             collapsible
-            collapsed={this.props.Common.hide}
+            collapsed={this.state.changeAside}
             onCollapse={this.onCollapse}
+            style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }}
             >
                 <div className="logo" />
                 {content}
@@ -210,16 +262,3 @@ class Aside extends Component {
         )
     }
 }
-
-function mapStateToProps(state) {
-    return {
-        Common: state.Common,
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        CommonActions: bindActionCreators(CommonActions, dispatch),
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Aside);

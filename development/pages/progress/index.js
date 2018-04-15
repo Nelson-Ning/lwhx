@@ -1,18 +1,12 @@
 import * as React from 'react';
 import {
-    connect
-} from 'react-redux';
-import {
-    bindActionCreators
-} from 'redux';
-import {
     Row,
     Col,
     message,
     Table,
     Divider
 } from 'antd';
-class Progress extends React.Component {
+export default class Progress extends React.Component {
 
     constructor(props) {
         super(props);
@@ -57,21 +51,3 @@ class Progress extends React.Component {
         )
     }
 }
-
-function mapStateToProps(state) {
-    let {
-        Common,
-        Progress
-    } = state;
-    return {
-        common: Common,
-        progress: Progress
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    // return {
-    //     MemberListActions: bindActionCreators(MemberListActions, dispatch),
-    // }
-}
-export default connect(mapStateToProps, null)(Progress);
