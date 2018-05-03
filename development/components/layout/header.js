@@ -151,8 +151,9 @@ export default class Top extends Component {
     }
 
     render() {
-        const name = sessionStorage.getItem("name")
-        const level = sessionStorage.getItem("level")
+        const name = sessionStorage.getItem("name");
+        const level = sessionStorage.getItem("level");
+        const college = sessionStorage.getItem("college");
         const {
             visible,
             type,
@@ -208,6 +209,10 @@ export default class Top extends Component {
           <span
                 className="layout-header-menu-title"
                 style={ { 'color': 'red' } }>{ CONST.USER_LEVEL.filter((value) => (value[0] == level)).length != 0 ? CONST.USER_LEVEL.filter((value) => (value[0] == level))[0][1] : '未查询到对应权限 请联系系统管理员' }</span>
+          <span className="layout-header-menu-title">学院信息: </span>
+          <span
+                className="layout-header-menu-title"
+                style={ { 'color': 'red' } }>{ CONST.INSTITUTE_CODE.filter((value) => (value[0] == college)).length != 0 ? CONST.INSTITUTE_CODE.filter((value) => (value[0] == college))[0][1] : '未查询到对应学院 请联系系统管理员' }</span>
           <Popover
                    content={ pop_content }
                    trigger="hover"

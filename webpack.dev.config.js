@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 const config = require('./webpack.base.config');
-var HttpPushWebpackPlugin = require('http-push-webpack-plugin');
+//var HttpPushWebpackPlugin = require('http-push-webpack-plugin');
 const uglify = require('uglifyjs-webpack-plugin');
 var proxy = require('http-proxy-middleware');
 

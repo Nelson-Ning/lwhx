@@ -6,10 +6,17 @@ import {
     Table,
     Divider
 } from 'antd';
+import {
+    AJAX
+} from '../../utils/index.js';
+const Ajax = new AJAX();
 export default class Progress extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            'data': []
+        };
         this.columns = [{
             title: '论文id',
             dataIndex: 'id',
@@ -30,19 +37,34 @@ export default class Progress extends React.Component {
         }];
     }
 
+    componentWillMount() {
+        Ajax.get({
+            url: 'api/topic/getCompleteTopic',
+        }).then(result => {
+            if (0 === +result.errno) {
+                this.setState({
+                    data: result.ret
+                })
+            } else {
+                message.error('服务器请求失败');
+            }
+        })
+    }
 
     render() {
-        //const data = this.props.shenpi.data
+        const {
+            data
+        } = this.state;
         return (
             <div className="details-content">
                 <Table 
                     className="data-table"
                     columns={this.columns} 
-                    dataSource={null}
+                    dataSource={data}
                     rowKey="id" 
                     title={() => 
                         <div>
-                            <span>选题进度</span>
+                            <span>互选结果查看</span>
                             
                         </div>
                         }

@@ -189,7 +189,7 @@ export default class Aside extends Component {
                             <Menu.Item key="7">
                                 <Link to="/progress">
                                     <Icon type="team" />
-                                    <span>论文进度查询</span>
+                                    <span>互选结果查看</span>
                                 </Link>
                             </Menu.Item>
                             <Menu.Item key="6">
@@ -218,22 +218,10 @@ export default class Aside extends Component {
                                     <span>论文互选大厅</span>
                                 </Link>
                             </Menu.Item>
-                            <Menu.Item key="3">
-                                <Link to="/personalData">
-                                    <Icon type="team" />
-                                    <span>个人资料设置</span>
-                                </Link>
-                            </Menu.Item>
                             <Menu.Item key="4">
-                                <Link to="/personalData">
-                                    <Icon type="team" />
-                                    <span>选题进度查看</span>
-                                </Link>
-                            </Menu.Item>
-                            <Menu.Item key="6">
                                 <Link to="/progress">
                                     <Icon type="team" />
-                                    <span>论文进度查询</span>
+                                    <span>互选结果查看</span>
                                 </Link>
                             </Menu.Item>
                             <Menu.Item key="5">
